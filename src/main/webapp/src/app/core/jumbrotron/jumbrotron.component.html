@@ -1,0 +1,45 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{title}}</h1>
+        <div *ngIf="!isCartShowing" class="container">
+            <p class="lead">{{description}}</p>
+        </div>
+        <div *ngIf="isCartShowing" class="container">
+            <div *ngIf="cartDTO">
+
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">name</th>
+                            <th scope="col">description</th>
+                            <th scope="col">amount</th>
+                            <th scope="col">quantity</th>
+                            <th scope="col">subtotal</th>
+                            <th scope="col">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cartItem of cartDTO.cartItems; let i = index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{cartItem.item.name}}</td>
+                            <td>{{cartItem.item.description}}</td>
+                            <td>{{cartItem.item.amount | currency:"PHP":"symbol" }}</td>
+                            <td>{{cartItem.quantity}}</td>
+                            <td>{{getSubTotal(cartItem) | currency:"PHP":"symbol" }}</td>
+                            <td>
+                                <mat-icon (click)="delete(i)">delete</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3" scope="row">Total</th>
+                            <td colspan="4">{{getTotal() | currency:"PHP":"symbol"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>

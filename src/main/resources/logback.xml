@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+	<include
+		resource="org/springframework/boot/logging/logback/base.xml" />
+	<contextName>shoppingcart</contextName>
+
+	<property scope="context" name="encoder.pattern"
+		value="%d{dd-MM-yyyy HH:mm:ss.SSS}|[%level]|[%thread]|%logger|%M|%line|%n--%msg%n" />
+	<property scope="context" name="log.path" value="logs" />
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>log/${CONTEXT_NAME}/${CONTEXT_NAME}-${instance.id}.log
+		</file>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/${CONTEXT_NAME}/${CONTEXT_NAME}-${instance.id}-%d{yyyy-MM-dd}-%i.log
+			</fileNamePattern>
+			<maxFileSize>5MB</maxFileSize>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>${encoder.pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${encoder.pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<logger name="org.jboss" level="WARN" />
+	<logger name="javamelody" level="WARN" />
+	<logger name="net.bull" level="WARN" />
+	<logger name="net.bull.javamelody" level="WARN" />
+	<logger name="org.quartz" level="WARN" />
+	<logger name="javax.activation" level="WARN" />
+	<logger name="ch.qos.logback" level="WARN" />
+	<logger name="com.sun" level="WARN" />
+	<logger name="org.apache" level="WARN" />
+	<logger name="org.hibernate.validator" level="WARN" />
+	<logger name="org.hibernate" level="WARN" />
+	<logger name="org.hibernate.ejb.HibernatePersistence"
+		level="OFF" />
+	<logger name="org.springframework" level="WARN" />
+	<logger name="org.springframework.web" level="WARN" />
+	<logger name="org.springframework.security" level="WARN" />
+	<logger name="org.springframework.cache" level="WARN" />
+	<logger name="sun.rmi" level="WARN" />
+	<logger name="sun.rmi.transport" level="WARN" />
+	<logger name="io.swagger" level="WARN" />
+	<logger name="springfox.documentation" level="WARN" />
+	<logger name="com.zaxxer.hikari" level="WARN" />
+
+</configuration>

@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 mat-dialog-title align="center">Add Item</h1>
+    <mat-dialog-content class="mat-typography">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Item" disabled value="{{item.name}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Amount" disabled value="{{item.amount}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" matInput placeholder="Quantity" [(ngModel)]="quantity" min="0" max="100"
+                (change)="getSubtotal()">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Sub-Total" disabled [(ngModel)]="test">
+        </mat-form-field>
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-flat-button (click)="close()" >Close</button>
+        <button mat-flat-button (click)="addItem(quantity,item)">Ok</button>
+    </mat-dialog-actions>
+</div>

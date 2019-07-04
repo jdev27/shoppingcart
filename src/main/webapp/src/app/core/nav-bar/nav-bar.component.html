@@ -1,0 +1,26 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>Shopping Cart</span>
+        <span class="example-spacer"></span>
+        <button [hidden]="hasCart" mat-flat-button (click)="createShoppingCart()">Create Cart
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Example add_shopping_cart icon" F>
+                add_shopping_cart
+            </mat-icon>
+        </button>
+        <button [hidden]="!hasCart || isCartShowing" mat-flat-button (click)="lookShoppingCart()">Check Cart
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Example shopping_cart icon">
+                shopping_cart
+            </mat-icon>
+        </button>
+        <button [hidden]="!hasCart || !isCartShowing" mat-flat-button (click)="hideShoppingCart()">Hide Cart
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Example visibility_off icon">
+                visibility_off
+            </mat-icon>
+        </button>
+        <button [hidden]="!hasCart" (click)="deleteCart()" mat-flat-button>Delete Cart
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">
+                delete
+            </mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
